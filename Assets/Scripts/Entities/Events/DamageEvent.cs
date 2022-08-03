@@ -1,0 +1,1 @@
+public delegate void DamageEvent(float damage);

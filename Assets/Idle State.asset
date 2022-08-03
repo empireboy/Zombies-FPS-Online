@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b9e48069dae37f44a80ec3557edfcf0, type: 3}
+  m_Name: Idle State
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 11400000, guid: bb762dea53e11234696bbf865d7390cc, type: 2}
+  - {fileID: 11400000, guid: 2d1a4b414af545c4eb17c934e32a586d, type: 2}
+  transitions: []
+  gizmoColor: {r: 0.013602972, g: 1, b: 0, a: 1}

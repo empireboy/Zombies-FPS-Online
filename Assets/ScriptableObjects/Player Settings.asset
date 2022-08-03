@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed6f7150384fd641b66bca269cc86e8, type: 3}
+  m_Name: Player Settings
+  m_EditorClassIdentifier: 
+  playerSettings:
+    playerRotationSettings:
+      clampMin: 0
+      clampMax: 359
+      axis: 0
+      isInverted: 0
+      isClamped: 0
+    headRotationSettings:
+      clampMin: -50
+      clampMax: 50
+      axis: 1
+      isInverted: 1
+      isClamped: 1
+    movementSettings:
+      moveSpeed: 200
+      sidewaysMoveSpeedMultiplier: 0.65
+    swaySettings:
+      swaySpeed: 5
+      swayAmount: {x: 0.1, y: 0.1}
+      maxSwayAmount: {x: 0.05, y: 0.02}
