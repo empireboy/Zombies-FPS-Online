@@ -11,7 +11,7 @@ public class PlayerInstaller : MonoInstaller
     private Transform _playerHead;
 
     [SerializeField]
-    private Rigidbody _rigidbody;
+    private CharacterController _characterController;
 
     [SerializeField]
     private Transform _weaponTransform;
@@ -23,13 +23,14 @@ public class PlayerInstaller : MonoInstaller
     {
         Container.Bind<PlayerInputState>().AsSingle();
         Container.Bind<PlayerSpawner>().AsSingle();
+        Container.Bind<Transform>().FromInstance(_playerRoot);
 
         Container.BindInterfacesTo<PlayerInputHandler>().AsSingle();
         Container.BindInterfacesTo<PlayerActionHandler>().AsSingle();
 
-        Container.BindInterfacesTo<RigidbodyMovement>()
+        Container.BindInterfacesTo<CharacterControllerMovement>()
             .AsSingle()
-            .WithArguments(_rigidbody);
+            .WithArguments(_characterController);
 
         Container.BindInterfacesTo<AxisRotator>()
             .AsTransient()

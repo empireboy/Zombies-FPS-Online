@@ -35,7 +35,7 @@ public class PlayerSettingsInstaller : ScriptableObjectInstaller<PlayerSettingsI
     {
         public AxisRotator.Settings playerRotationSettings;
         public AxisRotator.Settings headRotationSettings;
-        public RigidbodyMovement.Settings movementSettings;
+        public CharacterControllerMovement.Settings movementSettings;
         public Sway.Settings swaySettings;
     }
 }
