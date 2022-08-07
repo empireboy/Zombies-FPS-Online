@@ -9,6 +9,12 @@ public class Player : MonoBehaviour, IShootable, IDamageable
         remove { _healthHandler.OnTakeDamage -= value; }
     }
 
+    public event TransformEvent OnShoot
+    {
+        add { _gun.OnShoot += value; }
+        remove { _gun.OnShoot -= value; }
+    }
+
     [SerializeField]
     private Gun _gun;
 

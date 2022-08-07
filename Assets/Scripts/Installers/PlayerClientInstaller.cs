@@ -1,30 +1,21 @@
-using Aura2API;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
 using Zenject;
 
 public class PlayerClientInstaller : MonoInstaller
 {
     [SerializeField]
-    private AuraCamera _auraCamera;
-
-    [SerializeField]
-    private PostProcessLayer _postProcessLayer;
-
-    [SerializeField]
-    private Camera _camera;
+    private Component[] _componentsToDestroy;
 
     public override void InstallBindings()
     {
-        DisableCamera();
+        DestroyComponents();
 
         Container.Bind<PlayerSpawner>().AsSingle();
     }
 
-    private void DisableCamera()
+    private void DestroyComponents()
     {
-        Destroy(_auraCamera);
-        Destroy(_postProcessLayer);
-        Destroy(_camera);
+        foreach (Component component in _componentsToDestroy)
+            Destroy(component);
     }
 }

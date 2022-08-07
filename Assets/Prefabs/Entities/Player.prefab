@@ -217,9 +217,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0e2c54c29492249a61484059c6bc42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _auraCamera: {fileID: 820616506}
-  _postProcessLayer: {fileID: 820616503}
-  _camera: {fileID: 963194227}
+  _componentsToDestroy:
+  - {fileID: 820616506}
+  - {fileID: 820616503}
+  - {fileID: 963194227}
 --- !u!114 &1540832309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,6 +266,7 @@ GameObject:
   - component: {fileID: 1937018679}
   - component: {fileID: 918612454}
   - component: {fileID: 7962373058816806894}
+  - component: {fileID: 963784794441951866}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -441,6 +443,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _containerSource: 0
+--- !u!114 &963784794441951866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579986971711542006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c174b924c15a3408ba86897e4f5ce4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5627824759816662162
 GameObject:
   m_ObjectHideFlags: 0

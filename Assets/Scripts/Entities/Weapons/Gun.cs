@@ -3,6 +3,12 @@ using Zenject;
 
 public class Gun : MonoBehaviour, IShootable
 {
+    public event TransformEvent OnShoot
+    {
+        add { _shootHandler.OnShoot += value; }
+        remove { _shootHandler.OnShoot -= value; }
+    }
+
     [SerializeField]
     private GameObject _muzzleFlashPrefab;
 
@@ -13,7 +19,7 @@ public class Gun : MonoBehaviour, IShootable
     {
         _shootHandler = shootHandler;
 
-        _shootHandler.OnShoot += OnShoot;
+        _shootHandler.OnShoot += OnShootInternal;
     }
 
     public void Shoot()
@@ -29,7 +35,7 @@ public class Gun : MonoBehaviour, IShootable
         _shootHandler.Update();
     }
 
-    private void OnShoot(Transform muzzleFlashTransform)
+    private void OnShootInternal(Transform muzzleFlashTransform)
     {
         Instantiate(_muzzleFlashPrefab, muzzleFlashTransform.position, muzzleFlashTransform.rotation);
     }
