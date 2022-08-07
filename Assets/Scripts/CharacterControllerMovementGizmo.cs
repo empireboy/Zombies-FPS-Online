@@ -3,8 +3,7 @@ using Zenject;
 
 public class CharacterControllerMovementGizmo : MonoBehaviour
 {
-    [SerializeField]
-    private Color _color;
+    public Color Color { get; set; }
 
     private CharacterControllerMovement _characterControllerMovement;
 
@@ -19,7 +18,7 @@ public class CharacterControllerMovementGizmo : MonoBehaviour
         if (_characterControllerMovement == null)
             return;
 
-        Gizmos.color = _color;
+        Gizmos.color = Color;
         Gizmos.DrawRay(_characterControllerMovement.Transform.position, _characterControllerMovement.MovementVector);
     }
 }
