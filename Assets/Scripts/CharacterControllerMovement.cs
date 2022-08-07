@@ -4,6 +4,9 @@ using Zenject;
 
 public class CharacterControllerMovement : ITickable
 {
+	public Transform Transform => _characterController.transform;
+	public Vector3 MovementVector { get; private set; }
+
 	private readonly Settings _settings;
 	private readonly PlayerInputState _playerInputState;
 	private readonly CharacterController _characterController;
@@ -44,8 +47,6 @@ public class CharacterControllerMovement : ITickable
 			: _speedVertical + Physics.gravity.y * _settings.gravity * Time.deltaTime;
 
 		finalVelocity.y = _speedVertical;
-
-		Debug.DrawRay(_characterController.transform.position, finalVelocity, Color.red);
 
 		if (finalVelocity == Vector3.zero)
 			return;
