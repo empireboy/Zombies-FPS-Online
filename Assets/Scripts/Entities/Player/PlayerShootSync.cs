@@ -2,12 +2,19 @@ using Unity.Netcode;
 
 public class PlayerShootSync : NetworkBehaviour
 {
+    private IShootable _shootable;
+
+    private void Awake()
+    {
+        _shootable = GetComponent<IShootable>();
+    }
+
     public override void OnNetworkSpawn()
     {
         if (!IsOwner)
             return;
 
-        GetComponent<Player>().OnShoot += (transform) =>
+        _shootable.OnShoot += (transform) =>
         {
             RequestShootServerRpc();
         };
@@ -25,6 +32,6 @@ public class PlayerShootSync : NetworkBehaviour
         if (IsOwner)
             return;
 
-        GetComponent<Player>().Shoot();
+        _shootable.Shoot();
     }
 }
