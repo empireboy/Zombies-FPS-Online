@@ -22,7 +22,7 @@ public class PlayerInstaller : MonoInstaller
     {
         Container.Bind<PlayerInputState>().AsSingle();
         Container.Bind<PlayerSpawner>().AsSingle();
-        Container.Bind<Transform>().FromInstance(_playerRoot);
+        Container.Bind<Transform>().FromInstance(_playerRoot).AsSingle();
 
         Container.BindInterfacesTo<PlayerInputHandler>().AsSingle();
         Container.BindInterfacesTo<PlayerActionHandler>().AsSingle();

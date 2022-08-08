@@ -6,6 +6,9 @@ using Zenject;
 public class PlayerClientInstaller : MonoInstaller
 {
     [SerializeField]
+    private Transform _playerRoot;
+
+    [SerializeField]
     private AuraCamera _auraCamera;
 
     [SerializeField]
@@ -18,6 +21,7 @@ public class PlayerClientInstaller : MonoInstaller
     {
         DisableCamera();
 
+        Container.Bind<Transform>().FromInstance(_playerRoot).AsSingle();
         Container.Bind<PlayerSpawner>().AsSingle();
     }
 

@@ -217,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0e2c54c29492249a61484059c6bc42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerRoot: {fileID: 579986971711542002}
   _auraCamera: {fileID: 820616506}
   _postProcessLayer: {fileID: 820616503}
   _camera: {fileID: 963194227}
