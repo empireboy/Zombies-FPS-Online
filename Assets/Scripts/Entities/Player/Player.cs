@@ -34,8 +34,6 @@ public class Player : MonoBehaviour, IShootable, IDamageable
 
     public void Spawn()
     {
-        transform.position = new Vector3(-26, 4, -16);
-
         _playerSpawner.Spawn();
     }
 

@@ -6,10 +6,14 @@ public class PlayerClientInstaller : MonoInstaller
     [SerializeField]
     private Component[] _componentsToDestroy;
 
+    [SerializeField]
+    private Transform _playerRoot;
+
     public override void InstallBindings()
     {
         DestroyComponents();
 
+        Container.Bind<Transform>().FromInstance(_playerRoot).AsSingle();
         Container.Bind<PlayerSpawner>().AsSingle();
     }
 

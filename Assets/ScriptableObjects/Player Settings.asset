@@ -26,8 +26,9 @@ MonoBehaviour:
       isInverted: 1
       isClamped: 1
     movementSettings:
-      moveSpeed: 200
-      sidewaysMoveSpeedMultiplier: 0.65
+      moveSpeed: 4
+      sidewaysMoveSpeedMultiplier: 0.8
+      gravity: 1.5
     swaySettings:
       swaySpeed: 5
       swayAmount: {x: 0.1, y: 0.1}
