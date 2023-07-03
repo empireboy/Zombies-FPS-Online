@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using Zenject;
 
@@ -9,7 +10,7 @@ public class EnemySpawnManager : ITickable, IActivatable
 
     private readonly Settings _settings;
     private readonly DiContainer _container;
-    private readonly Player _player;
+    private readonly PlayerManager _playerManager;
     private readonly Enemy _enemyPrefab;
     private readonly Vector3[] _spawnPositions;
 
@@ -19,11 +20,11 @@ public class EnemySpawnManager : ITickable, IActivatable
     private int _currentEnemies;
     private int _maxEnemies;
 
-    public EnemySpawnManager(Settings settings, DiContainer container, Player player, Enemy enemyPrefab, Vector3[] spawnPositions)
+    public EnemySpawnManager(Settings settings, DiContainer container, PlayerManager playerManager, Enemy enemyPrefab, Vector3[] spawnPositions)
     {
         _settings = settings;
         _container = container;
-        _player = player;
+        _playerManager = playerManager;
         _enemyPrefab = enemyPrefab;
         _spawnPositions = spawnPositions;
 
@@ -54,7 +55,7 @@ public class EnemySpawnManager : ITickable, IActivatable
         if (_spawnTimer >= _spawnTime)
             SpawnEnemy();
 
-        _spawnTimer += Time.deltaTime;
+        _spawnTimer += Time.deltaTime / 10f;
     }
 
     private void SpawnEnemy()
@@ -65,7 +66,7 @@ public class EnemySpawnManager : ITickable, IActivatable
         // Get all spawn positions sorted, close to the player
         for (int i = 0; i < _spawnPositions.Length; i++)
         {
-            spawnPositionsCloseToPlayer[i] = GetClosestPosition(spawnPositionsTemp.ToArray(), _player.transform.position);
+            spawnPositionsCloseToPlayer[i] = GetClosestPosition(spawnPositionsTemp.ToArray(), _playerManager.Get(0).transform.position);
             spawnPositionsTemp.Remove(spawnPositionsCloseToPlayer[i]);
         }
 
@@ -74,7 +75,12 @@ public class EnemySpawnManager : ITickable, IActivatable
 
         int spawnIndex = UnityEngine.Random.Range(0, _settings.maxSpawnPoints + 1);
 
-        _container.InstantiatePrefab(_enemyPrefab, spawnPositionsCloseToPlayer[spawnIndex], Quaternion.identity, null);
+        //GameObject enemyObject = _container.InstantiatePrefab(_enemyPrefab, spawnPositionsCloseToPlayer[spawnIndex], Quaternion.identity, null);
+        GameObject enemyObject = UnityEngine.Object.Instantiate(_enemyPrefab.gameObject, spawnPositionsCloseToPlayer[spawnIndex], Quaternion.identity, null);
+
+        enemyObject.GetComponent<NetworkObject>().Spawn(true);
+
+        //enemyObject.transform.parent = null;
 
         _currentEnemies++;
         _spawnTimer = 0;
