@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dying State
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11400000, guid: 7825e212920e9dd44a4ec79754c3387e, type: 2}
+  - {fileID: 11400000, guid: f3fdea992f1820545849afc1b134ae6d, type: 2}
   - {fileID: 11400000, guid: 2d1a4b414af545c4eb17c934e32a586d, type: 2}
   - {fileID: 11400000, guid: dd7bcd0f0deaff3429316ef007ff4154, type: 2}
   transitions: []

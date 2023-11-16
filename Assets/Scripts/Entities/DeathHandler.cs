@@ -1,4 +1,4 @@
-using Zenject;
+/*using Zenject;
 
 public class DeathHandler : IActivatable
 {
@@ -22,4 +22,4 @@ public class DeathHandler : IActivatable
 
         _stateController.TransitionToState(_dyingState);
     }
-}
+}*/

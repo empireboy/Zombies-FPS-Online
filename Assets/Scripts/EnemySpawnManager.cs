@@ -36,8 +36,6 @@ public class EnemySpawnManager : ITickable, IActivatable
 
     public void Tick()
     {
-        Debug.Log("TEST");
-
         if (!IsActive)
             return;
 
@@ -52,7 +50,10 @@ public class EnemySpawnManager : ITickable, IActivatable
         if (_currentEnemies >= _maxEnemies)
             return;
 
-        if (_spawnTimer >= _spawnTime)
+        //if (_spawnTimer >= _spawnTime)
+        //    SpawnEnemy();
+
+        if (_spawnTimer >= 1)
             SpawnEnemy();
 
         _spawnTimer += Time.deltaTime / 10f;

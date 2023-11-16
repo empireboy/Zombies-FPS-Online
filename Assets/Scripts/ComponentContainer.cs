@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class ComponentContainer
 {
-    private Dictionary<Type, IActivatable> _components = new Dictionary<Type, IActivatable>();
+    private readonly Dictionary<Type, IActivatable> _components = new();
 
     public void Add<T>(T component) where T : IActivatable
     {

@@ -1,19 +1,37 @@
+using CM.Debugging;
 using UnityEngine;
 
-public abstract class AnimationAction<T> : Action
+[CreateAssetMenu(menuName = "State Machine/Animation Action")]
+public class AnimationAction : Action
 {
     [SerializeField]
-    protected T animation;
+    private string animation;
 
-    public override void Act(StateController sc)
+    public override void Act(IActor actor)
     {
         return;
     }
 
-    public override void OnActionStart(StateController sc)
+    public override void OnActionStart(IActor actor)
     {
-        PlayAnimation(sc, animation);
+        if (actor == null)
+        {
+            CM_Debug.LogError("State Machine", "Actor is null. Can't play animation");
+            return;
+        }
+
+        PlayAnimation(actor, animation);
     }
 
-    protected abstract void PlayAnimation(StateController sc, T animation);
+    private void PlayAnimation(IActor actor, string animation)
+    {
+        if (actor is IAnimatable animatable)
+        {
+            animatable.PlayAnimation(animation);
+        }
+        else
+        {
+            CM_Debug.LogError("State Machine", "Actor is not an IAnimatable so playing animations on it won't work");
+        }
+    }
 }

@@ -1,6 +1,4 @@
-using UnityEngine;
 using Zenject;
-using System.Linq;
 
 public class GameInstaller : MonoInstaller
 {

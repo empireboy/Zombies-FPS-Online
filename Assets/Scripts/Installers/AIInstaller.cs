@@ -5,7 +5,13 @@ using Zenject;
 public class AIInstaller : MonoInstaller
 {
     [SerializeField]
-    private StateController _stateController;
+    private GameObject _rootObject;
+
+    [SerializeField]
+    private NavMeshAgent agent;
+
+    [SerializeField]
+    private Animator animator;
 
     [SerializeField]
     private State _startingState;
@@ -15,16 +21,23 @@ public class AIInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<StateController>()
-            .FromInstance(_stateController)
+        Enemy enemy = _rootObject.GetComponent<IActor>() as Enemy;
+
+        Container.Bind<IActor>()
+            .To<Enemy>()
+            .FromInstance(enemy)
             .AsSingle();
 
+        Container.BindInterfacesTo<StateController>().AsSingle();
+        Container.Bind<NavMeshAgentWrapper>().AsSingle();
+        Container.Bind<AnimationManager>().AsSingle();
+
         Container.Bind<NavMeshAgent>()
-            .FromComponentInChildren()
+            .FromInstance(agent)
             .AsSingle();
 
         Container.Bind<Animator>()
-            .FromComponentInChildren()
+            .FromInstance(animator)
             .AsSingle();
 
         Container.Bind<State>()

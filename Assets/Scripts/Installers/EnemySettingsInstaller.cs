@@ -11,6 +11,7 @@ public class EnemySettingsInstaller : ScriptableObjectInstaller<EnemySettingsIns
     {
         BindSetting(enemySettings.healthSettings);
         BindSetting(enemySettings.selfDamageMultiplierSettings);
+        BindSetting(enemySettings.movementSettings);
     }
 
     private void BindSetting<T>(T instance)
@@ -25,5 +26,6 @@ public class EnemySettingsInstaller : ScriptableObjectInstaller<EnemySettingsIns
     {
         public Health.Settings healthSettings;
         public DamageMultiplier.Settings selfDamageMultiplierSettings;
+        public EnemyMovementHandler.Settings movementSettings;
     }
 }

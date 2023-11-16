@@ -18,3 +18,7 @@ MonoBehaviour:
     selfDamageMultiplierSettings:
       selfDamageMultiplier: 1
       headSelfDamageMultiplier: 2
+    movementSettings:
+      speedMin: 1
+      speedMax: 3
+      walkAnimationMultiplier: 2

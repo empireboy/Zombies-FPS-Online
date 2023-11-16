@@ -1,10 +1,12 @@
 using CM.Events;
+using System;
 using UnityEngine;
 using Zenject;
 
-public class Enemy : MonoBehaviour, IDamageable, IKillable, IComponentContainer
+public class Enemy : MonoBehaviour, IEnemyActor, IDamageable, IKillable, IComponentContainer, IAnimatable
 {
     public ComponentContainer Components { get; set; }
+    public IStateController StateController => _stateController;
 
     public event DamageEvent OnTakeDamage
     {
@@ -19,19 +21,35 @@ public class Enemy : MonoBehaviour, IDamageable, IKillable, IComponentContainer
     }
 
     private IHealth _health;
-    private DeathHandler _deathHandler;
+    //private DeathHandler _deathHandler;
+    private EnemyMovementHandler _enemyMovementHandler;
+    private IStateController _stateController;
+    private AnimationManager _animationManager;
 
     [Inject]
-    public void Construct(IHealth health, DeathHandler deathHandler)
+    public void Construct(
+        IHealth health,
+        /*DeathHandler deathHandler,*/
+        NavMeshAgentWrapper navMeshAgentWrapper,
+        EnemyMovementHandler enemyMovementHandler,
+        IStateController stateController,
+        AnimationManager animationManager
+    )
     {
         _health = health;
-        _deathHandler = deathHandler;
+        //_deathHandler = deathHandler;
+        _enemyMovementHandler = enemyMovementHandler;
+        _stateController = stateController;
+        _animationManager = animationManager;
 
         _health.OnKill += Kill;
 
         Components = new ComponentContainer();
         Components.Add(_health);
-        Components.Add(_deathHandler);
+        //Components.Add(_deathHandler);
+        Components.Add(navMeshAgentWrapper);
+
+        _stateController.SetActor(this);
     }
 
     public void TakeDamage(float damage)
@@ -41,6 +59,21 @@ public class Enemy : MonoBehaviour, IDamageable, IKillable, IComponentContainer
 
     public void Kill()
     {
-        _deathHandler.Kill();
+        //_deathHandler.Kill();
+    }
+
+    public void Stop()
+    {
+        _enemyMovementHandler.Stop();
+    }
+
+    public void PlayAnimation(string name)
+    {
+        _animationManager.PlayAnimation(name);
+    }
+
+    public void MoveTowards(Func<Vector3> position)
+    {
+        _enemyMovementHandler.MoveTowards(position);
     }
 }

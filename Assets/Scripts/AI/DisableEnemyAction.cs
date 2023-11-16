@@ -3,15 +3,17 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "State Machine/Disable Enemy Action")]
 public class DisableEnemyAction : Action
 {
-    public override void Act(StateController sc)
+    public override void Act(IActor actor)
     {
         return;
     }
 
-    public override void OnActionStart(StateController sc)
+    public override void OnActionStart(IActor actor)
     {
-        sc.GetComponent<IComponentContainer>().Components.SetActive<IHealth>(false);
-
-        sc.navMeshAgent.enabled = false;
+        if (actor is IComponentContainer componentContainer)
+        {
+            componentContainer.Components.SetActive<IHealth>(false);
+            componentContainer.Components.SetActive<NavMeshAgentWrapper>(false);
+        }
     }
 }

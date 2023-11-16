@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Walk State
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11400000, guid: 5e828a129fa7c994684836f36fb86178, type: 2}
+  - {fileID: 11400000, guid: 38da1f13dbdacba4caeec1a7774a5298, type: 2}
   - {fileID: 11400000, guid: bdbbd78562e4376449e23846deee67f0, type: 2}
   transitions: []
   gizmoColor: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}

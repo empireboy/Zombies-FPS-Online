@@ -973,10 +973,10 @@ GameObject:
   m_Component:
   - component: {fileID: 982624628064511589}
   - component: {fileID: 982624628064511588}
-  - component: {fileID: 75046248369531408}
   - component: {fileID: 982624628064511611}
+  - component: {fileID: -7203291734598149700}
   - component: {fileID: 4576305402389591682}
-  - component: {fileID: 3086850313923463894}
+  - component: {fileID: 2513576039238359157}
   - component: {fileID: 5249032407675533749}
   - component: {fileID: 8745460680687791479}
   - component: {fileID: 982624628064511610}
@@ -1019,22 +1019,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3850e94dd7f9c04ba96dd33774717ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &75046248369531408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4321663697912271990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b9267568436a214f8085bb5121f6147, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  navMeshAgent: {fileID: 0}
-  animator: {fileID: 0}
-  targetDestination: {x: 0, y: 0, z: 0}
-  _currentState: {fileID: 0}
 --- !u!114 &982624628064511611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1055,6 +1039,24 @@ MonoBehaviour:
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
+--- !u!114 &-7203291734598149700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4321663697912271990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 982624628064511588}
+  _identifier: 
+  _useSceneContext: 0
+  _context: {fileID: 982624628064511611}
+  _bindType: 0
 --- !u!114 &4576305402389591682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1071,7 +1073,7 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &3086850313923463894
+--- !u!114 &2513576039238359157
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2179,7 +2181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60372087b88642c4b84bce656581c830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stateController: {fileID: 75046248369531408}
+  _rootObject: {fileID: 4321663697912271990}
+  agent: {fileID: 8745460680687791479}
+  animator: {fileID: 5249032407675533749}
   _startingState: {fileID: 11400000, guid: bc5ee8959ed14684ab8f839259844d3d, type: 2}
   _dyingState: {fileID: 11400000, guid: 0f82b2e048a631d49a88f9b6fc1a06bb, type: 2}
 --- !u!114 &8337221883681592201

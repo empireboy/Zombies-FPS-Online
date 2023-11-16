@@ -1,21 +1,23 @@
+using CM.Debugging;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "State Machine/Walk Action")]
 public class WalkAction : Action
 {
-    public float speedMin = 1;
-    public float speedMax = 3;
-    public float walkAnimationMultiplier = 1;
-
-    public override void Act(StateController sc)
+    public override void Act(IActor actor)
     {
-        sc.navMeshAgent.SetDestination(Camera.main.transform.position);
+
     }
 
-    public override void OnActionStart(StateController sc)
+    public override void OnActionStart(IActor actor)
     {
-        sc.navMeshAgent.speed = Random.Range(speedMin, speedMax);
-
-        sc.animator.speed = sc.navMeshAgent.speed * walkAnimationMultiplier;
+        if (actor is IEnemyActor enemyActor)
+        {
+            enemyActor.MoveTowards(() => Camera.main.transform.position);
+        }
+        else
+        {
+            CM_Debug.LogError("State Machine", "Actor is not an IEnemyActor so calling MoveTowards on it won't work");
+        }
     }
 }
