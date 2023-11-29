@@ -3,13 +3,15 @@ using UnityEngine;
 
 public class RaycastShoot : IShoot
 {
+    public event TransformEvent OnStartShooting;
+    public event TransformEvent OnStopShooting;
     public event TransformEvent OnShoot;
 
     private readonly Settings _settings;
     private readonly Transform _shootTransform;
     private readonly Transform _muzzleFlashTransform;
 
-    private bool _canShoot = true;
+    private bool _isShooting = false;
     private float _shotTimer;
 
     public RaycastShoot(Settings settings, Transform shootTransform, Transform muzzleFlashTransform)
@@ -21,11 +23,22 @@ public class RaycastShoot : IShoot
         _shotTimer = _settings.fireRate;
     }
 
+    public void StartShooting()
+    {
+        _isShooting = true;
+
+        OnStartShooting?.Invoke(_muzzleFlashTransform);
+    }
+
+    public void StopShooting()
+    {
+        _isShooting = false;
+
+        OnStopShooting?.Invoke(_muzzleFlashTransform);
+    }
+
     public void Shoot()
     {
-        if (!_canShoot)
-            return;
-
         float currentDamage = _settings.damage;
 
         OnShoot?.Invoke(_muzzleFlashTransform);
@@ -48,20 +61,19 @@ public class RaycastShoot : IShoot
             currentDamage *= _settings.damageFalloff;
         }
 
-        _canShoot = false;
+        _shotTimer = _settings.fireRate;
     }
 
     public void Update()
     {
-        if (_canShoot)
-            return;
-
-        _shotTimer -= Time.deltaTime;
-
         if (_shotTimer <= 0)
         {
-            _shotTimer = _settings.fireRate;
-            _canShoot = true;
+            if (_isShooting)
+                Shoot();
+        }
+        else
+        {
+            _shotTimer -= Time.deltaTime;
         }
     }
 

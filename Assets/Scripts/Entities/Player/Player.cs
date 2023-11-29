@@ -9,10 +9,16 @@ public class Player : MonoBehaviour, IShootable, IDamageable
         remove { _healthHandler.OnTakeDamage -= value; }
     }
 
-    public event TransformEvent OnShoot
+    public event TransformEvent OnStartShooting
     {
-        add { _gun.OnShoot += value; }
-        remove { _gun.OnShoot -= value; }
+        add { _gun.OnStartShooting += value; }
+        remove { _gun.OnStartShooting -= value; }
+    }
+
+    public event TransformEvent OnStopShooting
+    {
+        add { _gun.OnStopShooting += value; }
+        remove { _gun.OnStopShooting -= value; }
     }
 
     [SerializeField]
@@ -37,9 +43,14 @@ public class Player : MonoBehaviour, IShootable, IDamageable
         _playerSpawner.Spawn();
     }
 
-    public void Shoot()
+    public void StartShooting()
     {
-        _gun.Shoot();
+        _gun.StartShooting();
+    }
+
+    public void StopShooting()
+    {
+        _gun.StopShooting();
     }
 
     public void TakeDamage(float damage)

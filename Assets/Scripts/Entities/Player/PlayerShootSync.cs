@@ -14,24 +14,44 @@ public class PlayerShootSync : NetworkBehaviour
         if (!IsOwner)
             return;
 
-        _shootable.OnShoot += (transform) =>
+        _shootable.OnStartShooting += (transform) =>
         {
-            RequestShootServerRpc();
+            RequestStartShootingServerRpc();
+        };
+
+        _shootable.OnStopShooting += (transform) =>
+        {
+            RequestStopShootingServerRpc();
         };
     }
 
     [ServerRpc]
-    private void RequestShootServerRpc()
+    private void RequestStartShootingServerRpc()
     {
-        ShootClientRpc();
+        StartShootingClientRpc();
+    }
+
+    [ServerRpc]
+    private void RequestStopShootingServerRpc()
+    {
+        StopShootingClientRpc();
     }
 
     [ClientRpc]
-    private void ShootClientRpc()
+    private void StartShootingClientRpc()
     {
         if (IsOwner)
             return;
 
-        _shootable.Shoot();
+        _shootable.StartShooting();
+    }
+
+    [ClientRpc]
+    private void StopShootingClientRpc()
+    {
+        if (IsOwner)
+            return;
+
+        _shootable.StopShooting();
     }
 }

@@ -3,10 +3,16 @@ using Zenject;
 
 public class Gun : MonoBehaviour, IShootable
 {
-    public event TransformEvent OnShoot
+    public event TransformEvent OnStartShooting
     {
-        add { _shootHandler.OnShoot += value; }
-        remove { _shootHandler.OnShoot -= value; }
+        add { _shootHandler.OnStartShooting += value; }
+        remove { _shootHandler.OnStartShooting -= value; }
+    }
+
+    public event TransformEvent OnStopShooting
+    {
+        add { _shootHandler.OnStopShooting += value; }
+        remove { _shootHandler.OnStopShooting -= value; }
     }
 
     [SerializeField]
@@ -22,9 +28,14 @@ public class Gun : MonoBehaviour, IShootable
         _shootHandler.OnShoot += OnShootInternal;
     }
 
-    public void Shoot()
+    public void StartShooting()
     {
-        _shootHandler.Shoot();
+        _shootHandler.StartShooting();
+    }
+
+    public void StopShooting()
+    {
+        _shootHandler.StopShooting();
     }
 
     private void Update()

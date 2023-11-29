@@ -1,6 +1,8 @@
 public interface IShootable
 {
-    event TransformEvent OnShoot;
+    event TransformEvent OnStartShooting;
+    event TransformEvent OnStopShooting;
 
-    void Shoot();
+    void StartShooting();
+    void StopShooting();
 }
